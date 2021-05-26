@@ -22,7 +22,10 @@
 
   <script src="js/jquery.min.js"></script>
   <script>
-    $('#img_unit').html('ここに、画像リストが表示されます').css('margin-top', '100px');
+    $.getJSON('https://h2o-space.com/htmlbook/images.php', function (data) {
+      alert('データを受診しました');
+    });
+
   </script>
 </body>
 
