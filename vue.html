@@ -18,15 +18,21 @@
   <div class="container">
     <div id="img_unit">
     </div>
+
+    <div id="vue_unit">
+      {{greeting}}<br>
+      {{message}}
+      <!-- Vue.jsのプレイスホルダー -->
+    </div>
   </div>
 
   <script src="js/jquery.min.js"></script>
-  
+
   <!-- 開発バージョン、便利なコンソールの警告が含まれています -->
-  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> -->
 
   <!-- 本番バージョン、サイズと速度のために最適化されています -->
-  <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
   <script>
     $.getJSON('https://h2o-space.com/htmlbook/images.php', function (data) {
       for (var i = 0; i < data.length; i++) {
@@ -37,6 +43,14 @@
       }
     });
 
+    var app = new Vue({
+      el: '#vue_unit',
+      /* elはelementの略で、要素を指定するという意味になる。*/
+      data: {
+        message: 'Vue.jsで書き換えました',
+        greeting: 'こんにちわ'
+      }
+    });
   </script>
 </body>
 
