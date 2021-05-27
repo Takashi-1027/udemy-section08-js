@@ -17,38 +17,41 @@
 
   <div class="container">
     <div id="img_unit">
+      <div class="photo">
+        <img :src="Photo.path" v-for="Photo in Photos">
+        <div class="inner">
+          <p>{{Photo.caption}}<span>{{Photo.name}}</span></p>
+        </div>
+      </div>
     </div>
 
-    <div id="vue_unit">
+    <!-- <div id="vue_unit">
       {{greeting}}<br>
-      {{message}}
-      <!-- Vue.jsのプレイスホルダー -->
-    </div>
+      {{message}} -->
+    <!-- Vue.jsのプレイスホルダー -->
+    <!-- </div> -->
   </div>
 
   <script src="js/jquery.min.js"></script>
 
   <!-- 開発バージョン、便利なコンソールの警告が含まれています -->
-  <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 
   <!-- 本番バージョン、サイズと速度のために最適化されています -->
-  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <!-- <script src="https://.net/npm/vue@2"></script> -->
+  
   <script>
-    $.getJSON('https://h2o-space.com/htmlbook/images.php', function (data) {
-      for (var i = 0; i < data.length; i++) {
-        $('<div class="photo"></div>')
-          .append('<img src="' + data[i].path + '">')
-          .append('<div class="inner"><p>' + data[i].caption + '<span>' + data[i].name + '</span></p></div>')
-          .appendTo('#img_unit');
-      }
-    });
-
     var app = new Vue({
-      el: '#vue_unit',
-      /* elはelementの略で、要素を指定するという意味になる。*/
+      el: '#img_unit',
       data: {
-        message: 'Vue.jsで書き換えました',
-        greeting: 'こんにちわ'
+        Photos: []
+        // 写真のデータはAjax通信によって得るが、まだデータが来ていないため、Photosという空([])の配列を渡したということ。
+      },
+      created: function () {
+        var self = this;
+        $.getJSON('https://h2o-space.com/htmlbook/images.php', function (data) {
+          self.Photos = data;
+        });
       }
     });
   </script>
