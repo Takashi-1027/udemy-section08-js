@@ -31,6 +31,15 @@
       }
     });
 
+    /*
+    $('<div class="photo"></div>')という記述はまだ存在していない記述を作り出すことができる書き方である。
+    JavaScriptでは、document.createElementに相応している。
+    上記の記述により<div class="photo"></div>が作られたということになる。
+
+    appendメソッドとはその後に記述した内容を追加するメソッドである。
+    <img src="' + data[i].path + '">と言う記述のdata[i].nameはjsonから取得されたpath情報を指定している。
+    */
+
   </script>
 </body>
 
